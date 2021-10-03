@@ -18,7 +18,7 @@ export default {
 @import "../style/variables";
 header{
     background-color: $Header_Disk;
-    height: 3.125rem;
+    height: 4.125rem;
     width: 100%;
 }
 
