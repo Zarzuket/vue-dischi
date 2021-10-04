@@ -4,14 +4,27 @@
           <div class="container_logo">
               <img src="../assets/spotify-logo.png" alt="">
           </div>
+              <select name="" id="" v-model="genere" @change="$emit('change' , genere )">
+                  <option value="All">All</option>
+                  <option value="Rock">Rock</option>
+                  <option value="Pop">Pop</option>
+                  <option value="Metal">Metal</option>
+                  <option value="Jazz">Jazz</option>
+              </select>
       </header>
   </div>
 </template>
 
 <script>
 export default {
-    name:"Header"
+    name:"Header",
+data(){
+    return{
+        genere:"",
+    }
 }
+}
+
 </script>
 
 <style lang="scss" scoped>
@@ -31,4 +44,8 @@ header{
     }
 }
 
+header{
+    display: flex;
+    justify-content: space-between;
+}
 </style>>

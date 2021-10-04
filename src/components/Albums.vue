@@ -1,14 +1,6 @@
 <template>
   <section>
-      
-    <!-- <div class="card">
-        <img src="../assets/spotify-logo.png" alt="">
-        <h3 class="title">deafa</h3>
-        <p>erqwrq</p>
-    </div> -->
-    <!-- <div class="card">
-    </div> -->
-        <Album :info="element" v-for="(element,index) in album" :key="index"/>
+        <Album :info="element" v-for="(element,index) in filteredDisks" :key="index"/>
   </section>
 </template>
 
@@ -17,20 +9,29 @@ import axios from "axios"
 import Album from './Album.vue'
 export default {
     name: "Albums",
+    props:["selectgenere"],
     components:{
         Album
     },
     data(){
         return{
-            album:[]
+            album:[],
         }
     },
     created() {
         axios.get("https://flynn.boolean.careers/exercises/api/array/music")
         .then( (respond) =>{
          this.album = respond.data.response;
-         console.log(this.album)
         } )
+    },
+    computed:{
+        filteredDisks(){
+            if(this.selectgenere === "" || this.selectgenere === "All"){
+                return this.album;
+            } else {
+                return this.album.filter((elm) => elm.genre == this.selectgenere)
+            }
+        }
     }
 }
 </script>
